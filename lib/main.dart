@@ -33,6 +33,8 @@ class _QuizPageState extends State<QuizPage> {
     'A slug\'s blood is green.'
   ];
 
+  int questionNumber = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,7 +48,7 @@ class _QuizPageState extends State<QuizPage> {
             child: Center(
               child: Text(
                 //'This is where the question text will go.',
-                questions[0],
+                questions[questionNumber],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
