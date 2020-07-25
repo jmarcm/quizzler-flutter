@@ -30,8 +30,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  int questionNumber = 0;
-
   int incrementQuestionNumber(number) {
     return number + 1;
   }
@@ -49,7 +47,7 @@ class _QuizPageState extends State<QuizPage> {
             child: Center(
               child: Text(
                 //'This is where the question text will go.',
-                quizBrain.getQuestionText(questionNumber),
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -76,15 +74,14 @@ class _QuizPageState extends State<QuizPage> {
                 // Try to update answer
 //                quizBrain.questionBank[questionNumber].questionAnswer = true;
                 //The user picked true.
-                bool correctAnswer =
-                    quizBrain.gestQuestionAnswer(questionNumber);
+                bool correctAnswer = quizBrain.gestQuestionAnswer();
                 if (correctAnswer == true) {
                   print('user got it right');
                 } else {
                   print('user got it wrong');
                 }
                 setState(() {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -104,15 +101,14 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool correctAnswer =
-                    quizBrain.gestQuestionAnswer(questionNumber);
+                bool correctAnswer = quizBrain.gestQuestionAnswer();
                 if (correctAnswer == false) {
                   print('user got it right');
                 } else {
                   print('user got it wrong');
                 }
                 setState(() {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
